@@ -11,7 +11,9 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
-
+  
+    @IBOutlet weak var stackDisplay: UILabel!
+    
     var userIsInTheMiddleOfTypingANumber = false
     var decimalSelected = false
     
@@ -50,6 +52,7 @@ class ViewController: UIViewController {
         case "cos": performSingleOperation {cos($0)}
         default: break
         }
+        addToStackDisplay(operation)
     }
     
     func performOperation(operation: (Double, Double) -> Double) {
@@ -72,6 +75,14 @@ class ViewController: UIViewController {
         userIsInTheMiddleOfTypingANumber = false
         decimalSelected = false
         operandStack.append(displayValue)
+        addToStackDisplay(String(displayValue))
+    }
+   
+    @IBAction func clear() {
+        display.text = "0"
+        stackDisplay.text = "0"
+        userIsInTheMiddleOfTypingANumber = false
+        decimalSelected = false
     }
     
     var displayValue: Double {
@@ -83,6 +94,12 @@ class ViewController: UIViewController {
             userIsInTheMiddleOfTypingANumber = false
             decimalSelected = false
         }
+    }
+    
+    func addToStackDisplay(input: String) {
+        let addition = ", " + input
+        print(addition)
+        stackDisplay.text = stackDisplay.text! + addition
     }
 
 }
