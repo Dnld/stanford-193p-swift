@@ -20,6 +20,10 @@ class ViewController: UIViewController {
         if decimalSelected && digit == "." {
             return
         }
+        if !userIsInTheMiddleOfTypingANumber && digit == "π" {
+            display.text = "3.14"
+            return
+        }
         if userIsInTheMiddleOfTypingANumber {
             display.text = display.text! + digit
         } else {
@@ -42,6 +46,8 @@ class ViewController: UIViewController {
         case "+": performOperation {$0 + $1}
         case "-": performOperation {$1 - $0}
         case "√": performSingleOperation {sqrt($0)}
+        case "sin": performSingleOperation {sin($0)}
+        case "cos": performSingleOperation {cos($0)}
         default: break
         }
     }
