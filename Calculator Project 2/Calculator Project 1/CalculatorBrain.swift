@@ -27,7 +27,6 @@ class CalculatorBrain {
                 }
             }
         }
-        
     }
     
     private var opsStack = [Op]()
